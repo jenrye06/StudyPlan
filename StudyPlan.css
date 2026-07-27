@@ -6,19 +6,20 @@
     font-size: 56px;
     font-weight:700;
     text-align:center;
-    color:white;
+    color:#E9ECEF;
     font-style:italic;
 }
 body{
-    background-color: rgb(40, 121, 241);
+    background-color: #1c3820;
 }
 .side-bar{
+    transition: transform 0.2;
     display:flex;
     flex-direction: column;
     width:220px;
     flex-shrink:0;
     font-family:sans-serif;
-    background-color: aliceblue;
+    background-color: #E9ECEF;
     border-radius: 8px;
     border: 1px solid;
     padding:20px;
@@ -31,14 +32,14 @@ body{
     margin-bottom:1rem;
 }
 .calendar-container{
-    max-width:900px;
+    width:90%;
     flex:1;
     margin: 2rem auto;
     font-family:sans-serif;
     border:1px solid;
     border-radius: 8px;
     padding: 1rem; 
-    background-color: aliceblue;
+    background-color: #E9ECEF;
 }
 .calendar-header{
     display:flex;
@@ -61,7 +62,7 @@ body{
     cursor:pointer;
 }
 .menu-hide:hover{
-    background-color:  rgb(164, 171, 177);
+    background-color:  #8b8d8f;
 }
 .weekdays, .days{
     display:grid;
@@ -80,7 +81,6 @@ body{
     transition: background 0.2s;
     aspect-ratio: 1.5;
     border: 1px solid;
-    border-radius: 8px;
 }
 .main-page{
     display:flex;
@@ -88,30 +88,37 @@ body{
     align-items: flex-start;
     max-width:1200px;
     margin: 0 auto;
-    padding:20px;
+    padding:5px;
 }
 .day:hover{
-    background-color: rgb(164, 171, 177);
+    background-color: #8b8d8f;
     transform: translateY(2px);
 }
 .nav-button:hover{
-    background-color:rgb(164, 171, 177);
+    background-color:#8b8d8f;
     transform: translateY(2px);
 }
 ::-webkit-scrollbar {
     width: 12px;
 }
 ::-webkit-scrollbar-track {
-    background: rgb(250, 247, 247);
+    background: rgb(20, 20, 20);
     border-radius: 6px; 
 }
 ::-webkit-scrollbar-thumb {
-    background: #9fc6f1; 
+    background: #E9ECEF; 
     border-radius: 6px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #728eac; 
+    background: #8b8d8f; 
 }
 .hidden{
-    transform: translateX(-245px);
+    transform: translateX(-230px);
+    position:absolute;
+}
+.bigger{
+    width:100%;
+}
+.today{
+    font-weight:bold;
 }

@@ -8,17 +8,17 @@
     <body>
         <h1 class = "head"> StudyPlan</h1>
         <main class = "main-page">
-            <div class = "side-bar">
+            <div id = "side-bar" class = "side-bar">
                 <div class = "side-header">
                     <h2>To-Do:</h2>
-                    <button class = "menu-hide">&lt;</button>
+                    <button id = "menu-hide" class = "menu-hide">&#9776;</button>
                 </div>
             </div>
             <div class = "calendar-container">
                 <div class = "calendar-header">
-                    <button class = "nav-button">&lt;</button>
+                    <button id = "nav-left" class = "nav-button">&lt;</button>
                     <h1>Month</h1>
-                    <button class = "nav-button">&gt;</button>
+                    <button id = "nav-right" class = "nav-button">&gt;</button>
                 </div>
                 <div class = "weekdays">
                     <div>Sun</div><div>Mon</div><div>Tues</div><div>Wed</div><div>Thurs</div><div>Fri</div><div>Sat</div>
@@ -58,5 +58,6 @@
                 </div>
             </div>
         </main>
+        <script src = "StudyPlan.js"></script>
     </body>
 </html>

@@ -6,12 +6,17 @@ const monthRightButton = document.getElementById("nav-right");
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 const monthPlace = document.getElementById("monthPlace");
 const yearPlace = document.getElementById("yearPlace");
+const taskButton = document.getElementById("taskButton");
+const AssignmentAddArea = document.getElementById("AssignmentAddArea");
+const popupMenu = document.getElementById("popup-menu");
+const x = document.getElementById("x");
 const now = new Date();
 const daysContainer = document.getElementById("days");
 let monthNum = now.getMonth();
 let yearNum = now.getFullYear();
 let selectedDate = {day:null, month: null, year: null};
 monthPlace.textContent = months[monthNum] + " " + yearNum;
+const assignments = [];
 
 function renderCalendar(){
     daysContainer.innerHTML = "";
@@ -43,6 +48,7 @@ function renderCalendar(){
             selectedDate.month = monthNum;
             selectedDate.year = yearNum;
             renderCalendar();
+            renderTaskList();
         });
 
     }
@@ -52,6 +58,14 @@ menuCloseButton.addEventListener("click",()=> {
     sidebar.classList.toggle("hidden");
     calendarContainer.classList.toggle("bigger");
 });
+
+taskButton.addEventListener("click",()=>{
+    popupMenu.classList.add("show");
+})
+
+x.addEventListener("click",()=>{
+    popupMenu.classList.remove("show");
+})
 
 monthRightButton.addEventListener("click",()=>{
     if(monthNum < 11){
@@ -75,4 +89,71 @@ monthLeftButton.addEventListener("click", ()=>{
     monthPlace.textContent = months[monthNum] + " " + yearNum;
     renderCalendar();
 } )
+
+function addTask(taskText = null, save = true){
+    const StartMonth = monthNum;
+    const StartDay = selectedDate.day;
+    const StartYear = yearNum;
+    const task = document.getElementById("AssignmentInput").value.trim();
+    const ExpectedTime = Number(document.getElementById("ExpectedTime").value);
+    const HoursPerDay = Number(document.getElementById("HoursPerDay").value);
+    const DueMonth = Number(document.getElementById("DueMonth").value)-1;
+    const DueDay = Number(document.getElementById("DueDay").value);
+    const DueYear = Number(document.getElementById("DueYear").value);
+
+    if (selectedDate.day === null) {
+        alert("Please select a start date on the calendar first.");
+        return;
+    }
+
+    const assignment = {
+        id: crypto.randomUUID(),
+        title: task,
+        estimatedMinutes: ExpectedTime,
+        hoursPerDay: HoursPerDay,
+        startDate: {
+            month: StartMonth,
+            day: StartDay,
+            year: StartYear
+        },
+        dueDate: {
+            month: DueMonth,
+            day: DueDay,
+            year: DueYear
+        },
+        completed: false
+    };
+
+    if (task !== ""){
+        assignments.push(assignment);
+        renderTaskList();
+    }
+};
+
+function renderTaskList(){
+    const list = document.getElementById("taskList");
+    list.innerHTML = "";
+    for (const assignment of assignments) {
+    if (
+        assignment.startDate.day === selectedDate.day &&
+        assignment.startDate.month === selectedDate.month &&
+        assignment.startDate.year === selectedDate.year
+    ) {
+        const list = document.getElementById("taskList");
+        const item = document.createElement("li");
+        item.textContent = assignment.title;
+        item.style.display = "flex";
+        item.style.flexDirection = "column";
+        list.appendChild(item);
+    }
+}
+}
+
+const addTaskButton = document.getElementById("addTask");
+
+addTaskButton.addEventListener("click", () => {
+    addTask();
+    popupMenu.classList.remove("show");
+});
+
 renderCalendar();

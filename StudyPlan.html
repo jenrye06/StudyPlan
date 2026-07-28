@@ -13,6 +13,27 @@
                     <h2>Agenda:</h2>
                     <button id = "menu-hide" class = "menu-hide">&#9776;</button>
                 </div>
+                <div class = "assignmentAddArea" id = "assignmentAddArea">
+                    <ul class = "task-list" id = "taskList"></ul>
+                    <button id = "taskButton" class = "taskButton">Add Task ></button>
+                    <div id = "popup-menu" class = "popup-menu">
+                        <button id = "x" class = "x">x</button>
+                        <p>Assignment Name:</p>
+                        <input type = "text" id = "AssignmentInput" class = "input-field" placeholder = "Assignment Name"/>
+                        <p>Expected Time:</p>
+                        <input type = "number" id = "ExpectedTime" class = "input-field" placeholder = "Expected Time (minutes)"/>
+                        <p>Hours Per Day:</p>
+                        <input type = "number" id = "HoursPerDay" class = "input-field" placeholder = "Hours Per Day"/>
+                        <p>Due Date:</p>
+                        <div class = "duedateInput">
+                            <input type = "number" id = "DueMonth" class = "dueday" placeholder = "Month"/>
+                            <input type = "number" id = "DueDay" class = "dueday" placeholder = "Day"/>
+                            <input type = "number" id = "DueYear" class = "dueday" placeholder = "Year"/>
+                        </div>
+                        <button class = "addTask" id = "addTask">+ Add Assignment</button>
+                    </div>
+                    
+                </div>
             </div>
             <div id = "calendar-container" class = "calendar-container">
                 <div class = "calendar-header">

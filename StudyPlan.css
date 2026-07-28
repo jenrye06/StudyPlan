@@ -134,3 +134,60 @@ body{
 .hidden h2{
     display:none;
 }
+.hidden .taskButton{
+    display:none;
+}
+.taskButton{
+    border:none;
+    border-radius: 8px;
+}
+.taskButton:hover{
+    background-color: #646668;
+    transform: translateY(2px);
+}
+.assignmentAddArea{
+    display: inline-block;
+}
+.popup-menu {
+  display: none; 
+  font-size: 10px;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ffffff;
+  min-width: 300px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  z-index: 1000;
+}
+.popup-menu.show {
+  display:flex;
+  flex-direction: column;
+}
+.x{
+    width:20px;
+    margin-left:92%;
+    background-color: red;
+    border-radius: 8px;
+    border:none;
+}
+.x:hover{
+    background-color: rgb(202, 0, 0);
+    transform: translateY(2px);
+}
+.input-field{
+    border-radius:8px;
+}
+.dueday{
+    border-radius: 8px;
+    width:95px;
+}
+.addTask{
+    border-radius:8px;
+    border:none;
+}
+.addTask:hover{
+    background-color: #646668;
+    transform: translateY(2px);
+}

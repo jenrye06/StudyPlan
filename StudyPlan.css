@@ -86,6 +86,9 @@ body{
     aspect-ratio: 1.5;
     border: 1px solid;
 }
+.selected{
+    background-color: #646668;
+}
 .main-page{
     display:flex;
     gap: 25px;

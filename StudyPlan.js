@@ -10,6 +10,7 @@ const now = new Date();
 const daysContainer = document.getElementById("days");
 let monthNum = now.getMonth();
 let yearNum = now.getFullYear();
+let selectedDay = null;
 monthPlace.textContent = months[monthNum] + " " + yearNum;
 
 function renderCalendar(){
@@ -34,9 +35,15 @@ function renderCalendar(){
         if(day === now.getDate() && monthNum === now.getMonth() && yearNum === now.getFullYear()){
             dayBox.classList.add("today");
         }
+        dayBox.addEventListener("click",()=>{
+            if(selectedDay){
+                selectedDay.classList.remove("selected");
+            }
+            dayBox.classList.add("selected");
+            selectedDay = dayBox;
+        });
     }
 }
-
 
 menuCloseButton.addEventListener("click",()=> {
     sidebar.classList.toggle("hidden");

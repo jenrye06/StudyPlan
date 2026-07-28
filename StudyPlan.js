@@ -10,7 +10,7 @@ const now = new Date();
 const daysContainer = document.getElementById("days");
 let monthNum = now.getMonth();
 let yearNum = now.getFullYear();
-let selectedDay = null;
+let selectedDate = {day:null, month: null, year: null};
 monthPlace.textContent = months[monthNum] + " " + yearNum;
 
 function renderCalendar(){
@@ -35,13 +35,16 @@ function renderCalendar(){
         if(day === now.getDate() && monthNum === now.getMonth() && yearNum === now.getFullYear()){
             dayBox.classList.add("today");
         }
-        dayBox.addEventListener("click",()=>{
-            if(selectedDay){
-                selectedDay.classList.remove("selected");
-            }
+        if(day === selectedDate.day && selectedDate.month === monthNum && selectedDate.year === yearNum){
             dayBox.classList.add("selected");
-            selectedDay = dayBox;
+        }
+        dayBox.addEventListener("click",()=>{
+            selectedDate.day = day;
+            selectedDate.month = monthNum;
+            selectedDate.year = yearNum;
+            renderCalendar();
         });
+
     }
 }
 

@@ -10,8 +10,7 @@ const now = new Date();
 const daysContainer = document.getElementById("days");
 let monthNum = now.getMonth();
 let yearNum = now.getFullYear();
-monthPlace.textContent = months[monthNum];
-yearPlace.textContent = yearNum;
+monthPlace.textContent = months[monthNum] + " " + yearNum;
 
 function renderCalendar(){
     daysContainer.innerHTML = "";
@@ -23,6 +22,7 @@ function renderCalendar(){
 
     for(let i = 0; i < startingDay; i++){
         const emptyDay = document.createElement("div");
+        emptyDay.classList.add("emptyDay");
         daysContainer.appendChild(emptyDay);
     }
 
@@ -51,7 +51,7 @@ monthRightButton.addEventListener("click",()=>{
         yearNum +=1;
         yearPlace.textContent = yearNum;
     }
-    monthPlace.textContent = months[monthNum];
+    monthPlace.textContent = months[monthNum] + " " + yearNum;
     renderCalendar();
 });
 monthLeftButton.addEventListener("click", ()=>{
@@ -62,7 +62,7 @@ monthLeftButton.addEventListener("click", ()=>{
         yearNum -= 1;
         yearPlace.textContent = yearNum;
     }
-    monthPlace.textContent = months[monthNum];
+    monthPlace.textContent = months[monthNum] + " " + yearNum;
     renderCalendar();
 } )
 renderCalendar();

@@ -11,28 +11,30 @@
 }
 body{
     background-color: #1c3820;
+    margin:0;
 }
 .side-bar{
-    transition: transform 0.2;
     display:flex;
+    overflow:hidden;
     flex-direction: column;
-    width:220px;
+    width:280px;
+    padding:1rem;
     flex-shrink:0;
     font-family:sans-serif;
     background-color: #E9ECEF;
     border-radius: 8px;
     border: 1px solid;
-    padding:20px;
-    transition: transform 0.5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 }
 .side-header{
     display:flex;
+    align-items: center;
+    gap: 10px;
     justify-content: space-between;
-    align-items:center;
     margin-bottom:1rem;
 }
 .calendar-container{
-    width:90%;
+    max-width: 1200px;
     flex:1;
     margin: 2rem auto;
     font-family:sans-serif;
@@ -46,18 +48,20 @@ body{
     justify-content: space-between;
     align-items:center;
     margin-bottom:1rem;
+    background-color: #262d49;
+    border-radius: 8px;
 }
 .nav-button{
     background: none;
-    border: 1px solid;
     padding: 0.5rem 0.75rem;
-    border-radius: 8px;
+    border:none;
+    border-radius:8px;
     cursor:pointer;
 }
 .menu-hide{
     background: none;
     border: 1px solid;
-    padding: 0.5rem 0.75rem;
+    padding:0.5rem;
     border-radius: 8px;
     cursor:pointer;
 }
@@ -85,17 +89,16 @@ body{
 .main-page{
     display:flex;
     gap: 25px;
+    max-width:100%;
     align-items: flex-start;
-    max-width:1200px;
     margin: 0 auto;
-    padding:5px;
 }
 .day:hover{
     background-color: #8b8d8f;
     transform: translateY(2px);
 }
 .nav-button:hover{
-    background-color:#8b8d8f;
+    background-color:#131725;
     transform: translateY(2px);
 }
 ::-webkit-scrollbar {
@@ -113,12 +116,18 @@ body{
     background: #8b8d8f; 
 }
 .hidden{
-    transform: translateX(-230px);
-    position:absolute;
+    width:60px;
 }
 .bigger{
     width:100%;
 }
 .today{
     font-weight:bold;
+}
+.emptyDay{
+    border: 1px solid;
+    border-radius: 8px;
+}
+.hidden h2{
+    display:none;
 }

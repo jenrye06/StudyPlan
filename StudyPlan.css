@@ -185,7 +185,8 @@ body{
 }
 .addTask{
     border-radius:8px;
-    border:none;
+    border:1px solid;
+    text-decoration: underline;
 }
 .addTask:hover{
     background-color: #646668;

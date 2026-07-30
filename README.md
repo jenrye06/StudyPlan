@@ -56,7 +56,7 @@ Most planners simply store assignments. StudyPlan aims to become an intelligent 
 * [x] Calendar interface
 * [x] Sidebar navigation
 * [x] Month navigation
-* [ ] Dynamic calendar generation
+* [x] Dynamic calendar generation
 * [ ] Assignment management
 * [ ] Backend integration
 * [ ] Adaptive scheduling engine

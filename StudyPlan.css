@@ -151,13 +151,14 @@ body{
 .popup-menu {
   display: none; 
   font-size: 10px;
-  position: absolute;
+  position:initial;
   top: 100%;
   left: 0;
-  background-color: #ffffff;
-  min-width: 300px;
+  background-color: #E9ECEF;
+  min-width: 255px;
   box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.15);
-  border: 1px solid #ddd;
+  border: 4px solid #262d49;
+  padding: 2px;
   border-radius: 4px;
   z-index: 1000;
 }
@@ -181,7 +182,7 @@ body{
 }
 .dueday{
     border-radius: 8px;
-    width:95px;
+    width:32%;
 }
 .addTask{
     border-radius:8px;

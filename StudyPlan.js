@@ -134,19 +134,19 @@ function renderTaskList(){
     const list = document.getElementById("taskList");
     list.innerHTML = "";
     for (const assignment of assignments) {
-    if (
-        assignment.startDate.day === selectedDate.day &&
-        assignment.startDate.month === selectedDate.month &&
-        assignment.startDate.year === selectedDate.year
-    ) {
-        const list = document.getElementById("taskList");
-        const item = document.createElement("li");
-        item.textContent = assignment.title;
+    if (assignment.startDate.day === selectedDate.day && assignment.startDate.month === selectedDate.month && assignment.startDate.year === selectedDate.year){
+        const item = document.createElement("div");
+        item.classList.add("assignment-card");
+        item.innerHTML = `
+        <strong> ${assignment.title}:</strong>
+        Expected Time: ${assignment.estimatedMinutes} hours
+        Target: ${assignment.hoursPerDay} hr/day
+        Due Date: ${assignment.dueDate.month}/${assignment.dueDate.day}/${assignment.dueDate.year}`;
         item.style.display = "flex";
         item.style.flexDirection = "column";
         list.appendChild(item);
     }
-}
+    }
 }
 
 const addTaskButton = document.getElementById("addTask");

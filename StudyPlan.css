@@ -193,3 +193,7 @@ body{
     background-color: #646668;
     transform: translateY(2px);
 }
+.assignment-card{
+    border:1px solid;
+    border-radius: 4px;
+}

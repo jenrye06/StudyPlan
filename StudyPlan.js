@@ -14,7 +14,7 @@ const now = new Date();
 const daysContainer = document.getElementById("days");
 let monthNum = now.getMonth();
 let yearNum = now.getFullYear();
-let selectedDate = {day:null, month: null, year: null};
+let selectedDate = null
 monthPlace.textContent = months[monthNum] + " " + yearNum;
 const assignments = [];
 
@@ -40,13 +40,11 @@ function renderCalendar(){
         if(day === now.getDate() && monthNum === now.getMonth() && yearNum === now.getFullYear()){
             dayBox.classList.add("today");
         }
-        if(day === selectedDate.day && selectedDate.month === monthNum && selectedDate.year === yearNum){
+        if(selectedDate && day === selectedDate.getDate() && monthNum === selectedDate.getMonth() && yearNum === selectedDate.getFullYear()){
             dayBox.classList.add("selected");
         }
         dayBox.addEventListener("click",()=>{
-            selectedDate.day = day;
-            selectedDate.month = monthNum;
-            selectedDate.year = yearNum;
+            selectedDate = new Date(yearNum, monthNum, day);
             renderCalendar();
             renderTaskList();
         });
@@ -91,50 +89,50 @@ monthLeftButton.addEventListener("click", ()=>{
 } )
 
 function addTask(taskText = null, save = true){
-    const StartMonth = monthNum;
-    const StartDay = selectedDate.day;
-    const StartYear = yearNum;
     const task = document.getElementById("AssignmentInput").value.trim();
     const ExpectedTime = Number(document.getElementById("ExpectedTime").value);
     const HoursPerDay = Number(document.getElementById("HoursPerDay").value);
     const DueMonth = Number(document.getElementById("DueMonth").value)-1;
     const DueDay = Number(document.getElementById("DueDay").value);
     const DueYear = Number(document.getElementById("DueYear").value);
-
-    if (selectedDate.day === null) {
+    const dueDate = new Date(DueYear, DueMonth, DueDay);
+    if (!selectedDate) {
         alert("Please select a start date on the calendar first.");
         return;
     }
-
+    if (!task){
+        alert("Please enter an assignment name.");
+        return;
+    }
+    if (ExpectedTime <= 0 || HoursPerDay <= 0 || !ExpectedTime || !HoursPerDay){
+        alert("Please enter a valid hour count.");
+        return;
+    }
+    if (dueDate <= selectedDate){
+        alert("Please enter a valid due date!");
+        return;
+    }
     const assignment = {
         id: crypto.randomUUID(),
         title: task,
         estimatedHours: ExpectedTime,
         hoursPerDay: HoursPerDay,
-        startDate: {
-            month: StartMonth,
-            day: StartDay,
-            year: StartYear
-        },
-        dueDate: {
-            month: DueMonth,
-            day: DueDay,
-            year: DueYear
-        },
+        startDate: new Date(selectedDate),
+        dueDate: dueDate,
         completed: false
     };
-
-    if (task !== ""){
-        assignments.push(assignment);
-        renderTaskList();
-    }
+    assignments.push(assignment);
+    renderTaskList();
 };
 
 function renderTaskList(){
+    if(!selectedDate){
+        return;
+    }
     const list = document.getElementById("taskList");
     list.innerHTML = "";
     for (const assignment of assignments) {
-    if (assignment.startDate.day === selectedDate.day && assignment.startDate.month === selectedDate.month && assignment.startDate.year === selectedDate.year){
+    if (selectedDate <= assignment.dueDate && selectedDate >= assignment.startDate){
         const item = document.createElement("div");
         const circle = document.createElement("div");
         circle.classList.add("assignment-status");
@@ -149,7 +147,7 @@ function renderTaskList(){
         <strong> ${assignment.title}:</strong>
         Expected Time: ${assignment.estimatedHours} hours
         Target: ${assignment.hoursPerDay} hr/day
-        Due Date: ${assignment.dueDate.month}/${assignment.dueDate.day}/${assignment.dueDate.year}`;
+        Due Date: ${assignment.dueDate.getMonth() + 1}/${assignment.dueDate.getDate()}/${assignment.dueDate.getFullYear()}`;
         item.style.display = "flex";
         item.style.flexDirection = "column";
         item.appendChild(circle);
@@ -164,5 +162,12 @@ addTaskButton.addEventListener("click", () => {
     addTask();
     popupMenu.classList.remove("show");
 });
+
+function generateSchedule(assignment){
+    let timePerDay = assignment.estimatedHours
+    if (assignment.dueDate.getDate()){
+
+    }
+}
 
 renderCalendar();

@@ -109,7 +109,7 @@ function addTask(taskText = null, save = true){
     const assignment = {
         id: crypto.randomUUID(),
         title: task,
-        estimatedMinutes: ExpectedTime,
+        estimatedHours: ExpectedTime,
         hoursPerDay: HoursPerDay,
         startDate: {
             month: StartMonth,
@@ -136,14 +136,23 @@ function renderTaskList(){
     for (const assignment of assignments) {
     if (assignment.startDate.day === selectedDate.day && assignment.startDate.month === selectedDate.month && assignment.startDate.year === selectedDate.year){
         const item = document.createElement("div");
+        const circle = document.createElement("div");
+        circle.classList.add("assignment-status");
+        if (assignment.completed === false){
+            circle.style.backgroundColor = "red";
+        }
+        else{
+            circle.style.backgroundColor = "green";
+        }
         item.classList.add("assignment-card");
         item.innerHTML = `
         <strong> ${assignment.title}:</strong>
-        Expected Time: ${assignment.estimatedMinutes} hours
+        Expected Time: ${assignment.estimatedHours} hours
         Target: ${assignment.hoursPerDay} hr/day
         Due Date: ${assignment.dueDate.month}/${assignment.dueDate.day}/${assignment.dueDate.year}`;
         item.style.display = "flex";
         item.style.flexDirection = "column";
+        item.appendChild(circle);
         list.appendChild(item);
     }
     }

@@ -196,4 +196,16 @@ body{
 .assignment-card{
     border:1px solid;
     border-radius: 4px;
+    padding:2px;
+}
+.assignment-status{
+    width:10px;
+    height:10px;
+    border-radius:50%;
+}
+.hidden .popup-menu{
+    display:none
+}
+.hidden .task-list{
+    display:none;
 }

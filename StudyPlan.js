@@ -119,8 +119,10 @@ function addTask(taskText = null, save = true){
         hoursPerDay: HoursPerDay,
         startDate: new Date(selectedDate),
         dueDate: dueDate,
-        completed: false
+        completed: false,
+        schedule: []
     };
+    assignment.schedule = generateSchedule(assignment);
     assignments.push(assignment);
     renderTaskList();
 };
@@ -164,10 +166,31 @@ addTaskButton.addEventListener("click", () => {
 });
 
 function generateSchedule(assignment){
-    let timePerDay = assignment.estimatedHours
-    if (assignment.dueDate.getDate()){
-
+    let schedule = [];
+    let hoursInTotal = assignment.estimatedHours
+    let remainingHours = assignment.estimatedHours;
+    let daysBetween = Math.ceil((assignment.dueDate - assignment.startDate) / (1000 * 60 * 60 * 24)) + 1;
+    let currentDay = new Date(assignment.startDate);
+    let maxAvailableHours = daysBetween * assignment.hoursPerDay;
+    if(maxAvailableHours < hoursInTotal){
+        alert("Not enough time to complete the assignment with the given hours per day.");
+        return [];
     }
+    for(let i = 0; i < daysBetween; i++){
+        let hoursForToday = Math.min(assignment.hoursPerDay, remainingHours);
+        schedule.push({
+            date: new Date(currentDay),
+            hours: hoursForToday
+        });
+        remainingHours -= hoursForToday;
+
+        currentDay.setDate(currentDay.getDate() + 1);
+
+        if(remainingHours <= 0){
+            break;
+        }
+    }
+    return schedule;
 }
 
 renderCalendar();
